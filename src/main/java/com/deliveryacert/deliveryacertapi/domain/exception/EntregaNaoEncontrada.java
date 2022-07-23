@@ -1,6 +1,6 @@
 package com.deliveryacert.deliveryacertapi.domain.exception;
 
-public class EntregaNaoEncontrada extends RuntimeException {
+public class EntregaNaoEncontrada extends RecursoNaoEncontrado {
 
     private static final long serialVersionUID = 1L;
 

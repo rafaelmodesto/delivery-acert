@@ -1,6 +1,6 @@
 package com.deliveryacert.deliveryacertapi.domain.exception;
 
-public class UsuarioNaoEncontrado extends RuntimeException {
+public class UsuarioNaoEncontrado extends RecursoNaoEncontrado {
 
     private static final long serialVersionUID = 1L;
 
