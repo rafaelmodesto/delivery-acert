@@ -1,6 +1,8 @@
 package com.deliveryacert.deliveryacertapi.domain.service;
 
 import com.deliveryacert.deliveryacertapi.domain.exception.PedidoNaoEncontrado;
+import com.deliveryacert.deliveryacertapi.domain.exception.PedidoRequisicaoInvalida;
+import com.deliveryacert.deliveryacertapi.domain.exception.UsuarioNaoEncontrado;
 import com.deliveryacert.deliveryacertapi.domain.model.Pedido;
 import com.deliveryacert.deliveryacertapi.domain.model.Usuario;
 import com.deliveryacert.deliveryacertapi.domain.repository.PedidoRepository;
@@ -23,11 +25,13 @@ public class PedidoService {
     }
 
     public Pedido salvar(Pedido pedido) {
-        Long usuarioId = pedido.getCliente_id().getId();
-
-        Usuario usuario = usuarioService.buscarOuFalhar(usuarioId);
-
-        pedido.setCliente_id(usuario);
+        try {
+            Long usuarioId = pedido.getCliente_id().getId();
+            Usuario usuario = usuarioService.buscarOuFalhar(usuarioId);
+            pedido.setCliente_id(usuario);
+        } catch (UsuarioNaoEncontrado | NullPointerException e) {
+            throw new PedidoRequisicaoInvalida("É obrigatório informar um cliente para criar um pedido.");
+        }
 
         return pedidoRepository.save(pedido);
     }

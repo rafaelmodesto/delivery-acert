@@ -1,6 +1,7 @@
 package com.deliveryacert.deliveryacertapi.api.exceptionhandler;
 
 import com.deliveryacert.deliveryacertapi.domain.exception.RecursoNaoEncontrado;
+import com.deliveryacert.deliveryacertapi.domain.exception.RequisicaoInvalida;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,17 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<?> handleRecursoNaoEncontrado(RecursoNaoEncontrado ex, WebRequest request) {
         HttpStatus status = HttpStatus.NOT_FOUND;
         ProblemType problemType = ProblemType.RECURSO_NAO_ENCONTRADO;
+        String detail = ex.getMessage();
+
+        Problem problem = createProblemBuilder(status, problemType, detail).build();
+
+        return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
+    }
+
+    @ExceptionHandler(RequisicaoInvalida.class)
+    public ResponseEntity<?> handleRequisicaoInvalida(RequisicaoInvalida ex, WebRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        ProblemType problemType = ProblemType.REQUISICAO_INVALIDA;
         String detail = ex.getMessage();
 
         Problem problem = createProblemBuilder(status, problemType, detail).build();

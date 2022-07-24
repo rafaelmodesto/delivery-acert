@@ -1,6 +1,8 @@
 package com.deliveryacert.deliveryacertapi.domain.service;
 
 import com.deliveryacert.deliveryacertapi.domain.exception.EntregaNaoEncontrada;
+import com.deliveryacert.deliveryacertapi.domain.exception.EntregaRequisicaoInvalida;
+import com.deliveryacert.deliveryacertapi.domain.exception.PedidoNaoEncontrado;
 import com.deliveryacert.deliveryacertapi.domain.model.Entrega;
 import com.deliveryacert.deliveryacertapi.domain.model.Pedido;
 import com.deliveryacert.deliveryacertapi.domain.repository.EntregaRepository;
@@ -22,11 +24,14 @@ public class EntregaService {
     }
 
     public Entrega salvar(Entrega entrega) {
-        Long pedidoId = entrega.getPedido_id().getId();
+        try {
+            Long pedidoId = entrega.getPedido_id().getId();
+            Pedido pedido = pedidoService.buscarOuFalhar(pedidoId);
+            entrega.setPedido_id(pedido);
+        } catch (PedidoNaoEncontrado | NullPointerException e) {
+            throw new EntregaRequisicaoInvalida("É obrigatório informar um pedido para criar uma entrega.");
+        }
 
-        Pedido pedido = pedidoService.buscarOuFalhar(pedidoId);
-
-        entrega.setPedido_id(pedido);
 
         return entregaRepository.save(entrega);
     }

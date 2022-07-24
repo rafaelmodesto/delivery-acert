@@ -5,6 +5,7 @@ import lombok.Getter;
 @Getter
 public enum ProblemType {
 
+    REQUISICAO_INVALIDA("/requisicao-invalida", "Requisição inválida"),
     RECURSO_NAO_ENCONTRADO("/recurso-nao-encontrado", "Recurso não encontrado");
 
     private String title;
