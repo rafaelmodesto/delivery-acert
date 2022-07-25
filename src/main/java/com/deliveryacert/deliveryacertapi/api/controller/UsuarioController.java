@@ -1,5 +1,7 @@
 package com.deliveryacert.deliveryacertapi.api.controller;
 
+import com.deliveryacert.deliveryacertapi.api.security.JWTLoginFilter;
+import com.deliveryacert.deliveryacertapi.api.security.TokenAuthenticationService;
 import com.deliveryacert.deliveryacertapi.domain.model.Usuario;
 import com.deliveryacert.deliveryacertapi.domain.repository.UsuarioRepository;
 import com.deliveryacert.deliveryacertapi.domain.service.UsuarioService;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -18,6 +21,9 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+
+//    @Autowired
+//    private JWTLoginFilter jwtLoginFilter;
 
     @GetMapping
     public List<Usuario> listar() {
@@ -52,4 +58,9 @@ public class UsuarioController {
     public void remover(@PathVariable Long usuarioId) {
         usuarioService.excluir(usuarioId);
     }
+
+//    @PostMapping("/login")
+//    public void logar(@RequestBody Usuario usuario){
+//        jwtLoginFilter.attemptAuthentication(usuario, );
+//    }
 }
