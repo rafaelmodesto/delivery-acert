@@ -27,13 +27,13 @@ O projeto consiste em uma api simplificada para controle de delivery de um resta
 
 <b>Executando API</b>
 
-application.properties
-Crie um banco Firebird e indique o caminho na propriedade spring.datasource.url.
-Informe o usuário e senha do banco nas propriedades spring.datasource.username e spring.datasource.password.
+application.properties<br />
+Crie um banco Firebird e indique o caminho na propriedade <i>spring.datasource.url</i>.<br />
+Informe o usuário e senha do banco nas propriedades <i>spring.datasource.username</i> e <i>spring.datasource.password</i>.
 
 <b>Autenticação/Login</b>
 
-Para realizar autenticação na api, basta fazer uma requisição POST no endpoint “/login” (http://localhost:8080/login) passando no body um usuário e senha.
+Para realizar autenticação na api, basta fazer uma requisição POST no endpoint “/login” (http://localhost:8080/login) passando no body um email e senha.
 
 ![image](https://user-images.githubusercontent.com/20582755/180915033-70b2f60d-f87a-433f-9681-b366500e4faa.png)
 
