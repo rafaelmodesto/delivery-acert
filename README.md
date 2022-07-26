@@ -102,3 +102,7 @@ OBS.:Utilize o token JWT no Auth da requisição como Bearer
                           } <br />
                         } <br />
 [DELETE] Excluir - http://localhost:8080/entregas/id <br />
+
+Se você utiliza o Insomina para fazer suas requisições, clique no botão abaixo.<br /> 
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Delivery%20Acert%20API&uri=https%3A%2F%2Fraw.githubusercontent.com%2Frafaelmodesto%2Fdelivery-acert%2Fmain%2FInsomnia.json)
+
